@@ -5,12 +5,15 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
-        "lint": "vue-cli-service lint"
+        "lint": "vue-cli-service lint",
+        "deploy": "gh-pages -d dist"
     },
+    "homepage": "https://github.com/FatmaAdel96/To-Do-List-Vue.js",
     "dependencies": {
         "@vue/composition-api": "*",
         "bootstrap": "^4.0.0",
         "core-js": "^3.6.5",
+        "gh-pages": "^3.2.3",
         "jquery": "^3.6.0",
         "moment": "^2.29.1",
         "normalize.css": "^8.0.1",
@@ -18,8 +21,7 @@
         "vue": "^2.6.11",
         "vue-router": "^3.2.0",
         "vuelidate": "^0.7.6",
-        "vuex": "^3.4.0",
-        "execa": "latest"
+        "vuex": "^3.4.0"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "~4.5.0",
