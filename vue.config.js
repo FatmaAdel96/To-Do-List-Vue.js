@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/project To-Do-List-Vue.js/'
+    publicPath: '/To-Do-List-Vue.js/'
   }
