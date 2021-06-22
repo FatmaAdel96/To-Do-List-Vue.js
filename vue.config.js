@@ -1,6 +1,6 @@
 module.exports = {
-    publicPath: '/To-Do-List-Vue.js/dist'
-  }
+    publicPath: "/To-Do-List-Vue.js",
+};
 // import {defineConfig } from 'vite'
 // import vue from '@vitejs/plugin-vue'
 
