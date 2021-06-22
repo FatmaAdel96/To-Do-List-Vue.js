@@ -22,7 +22,8 @@
                                 <select
                                     class="form-control rounded"
                                     id=""
-                                    v-model="tasksFilteration"
+                                    v-model="filterValue"
+                                    @change="tasksFilteration()"
                                 >
                                     <option value="">
                                         Make your choice ...
@@ -62,6 +63,7 @@
 <script>
 import { defineComponent } from "@vue/composition-api";
 import taskCard from "@/components/taskCard.vue";
+import moment from "moment";
 
 export default defineComponent({
     name: "Home",
@@ -72,24 +74,72 @@ export default defineComponent({
         return {
             name: "aaaaa",
             tasks: this.getTasks(),
-            tasksFilteration: "",
+            filterValue: "",
         };
     },
     mounted() {
         // console.log(this.tasks);
-        console.log(this.tasksFilteration);
     },
-    computed() {
-        console.log(this.tasksFilteration);
-    },
+    computed: {},
     methods: {
         getTasks: function () {
-            // console.log("111111");
             return JSON.parse(localStorage.getItem("tasks"));
         },
         getNewTasks: function () {
-            // console.log("111111");
             this.tasks = this.getTasks();
+        },
+        tasksFilteration: function () {
+            this.tasks = this.getTasks();
+
+            if (this.filterValue === "all") {
+                return true;
+            }
+
+            var finishedTasks = [];
+            var activeTasks = [];
+            var soonTasks = [];
+
+            for (let i = 0; i < this.tasks.length; i++) {
+                const isTaskActive =
+                    moment(this.tasks[i].end, "MM-DD-YYYY").isSame(
+                        moment(moment(), "MM-DD-YYYY")
+                    ) ||
+                    moment(this.tasks[i].start, "MM-DD-YYYY").isSame(
+                        moment(moment(), "MM-DD-YYYY")
+                    ) ||
+                    (moment(this.tasks[i].start, "MM-DD-YYYY").isBefore(
+                        moment(moment(), "MM-DD-YYYY")
+                    ) &&
+                        moment(this.tasks[i].end, "MM-DD-YYYY").isAfter(
+                            moment(moment(), "MM-DD-YYYY")
+                        ));
+                const istaskFinished = moment(
+                    this.tasks[i].end,
+                    "MM-DD-YYYY"
+                ).isBefore(moment(moment(), "MM-DD-YYYY"));
+                const istaskSoon = moment(
+                    this.tasks[i].start,
+                    "MM-DD-YYYY"
+                ).isAfter(moment(moment(), "MM-DD-YYYY"));
+
+                if (isTaskActive) {
+                    activeTasks.push(this.tasks[i]);
+                }
+                if (istaskFinished) {
+                    finishedTasks.push(this.tasks[i]);
+                }
+                if (istaskSoon) {
+                    soonTasks.push(this.tasks[i]);
+                }
+            }
+
+            if (this.filterValue === "active") {
+                this.tasks = activeTasks;
+            } else if (this.filterValue === "finished") {
+                this.tasks = finishedTasks;
+            } else if (this.filterValue === "soon") {
+                this.tasks = soonTasks;
+            }
         },
     },
     // props: ["tasks"],

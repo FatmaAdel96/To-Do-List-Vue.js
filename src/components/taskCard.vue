@@ -210,16 +210,11 @@ export default defineComponent({
     methods: {
         checkActive: function (start, end) {
             var startDate = moment(start, "YYYY-MM-DD", true);
-
-            console.log(start);
-
             if (startDate.isValid()) {
                 start = moment(start, "YYYY-MM-DD").format("MM-DD-YYYY");
             }
 
             var endDate = moment(end, "YYYY-MM-DD", true);
-            // console.log(endDate.isValid());
-
             if (endDate.isValid()) {
                 end = moment(end, "YYYY-MM-DD").format("MM-DD-YYYY");
             }
