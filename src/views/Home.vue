@@ -19,11 +19,22 @@
                                 >Filter:</label
                             >
                             <div class="col-sm-10">
-                                <select class="form-control rounded" id="">
-                                    <option>All</option>
-                                    <option>Active Tasks</option>
-                                    <option>Finished Tasks</option>
-                                    <option>Tasks That Will Start Soon</option>
+                                <select
+                                    class="form-control rounded"
+                                    id=""
+                                    v-model="tasksFilteration"
+                                >
+                                    <option value="">
+                                        Make your choice ...
+                                    </option>
+                                    <option value="all">All</option>
+                                    <option value="active">Active Tasks</option>
+                                    <option value="finished">
+                                        Finished Tasks
+                                    </option>
+                                    <option value="soon">
+                                        Tasks That Will Start Soon
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -61,10 +72,15 @@ export default defineComponent({
         return {
             name: "aaaaa",
             tasks: this.getTasks(),
+            tasksFilteration: "",
         };
     },
     mounted() {
         // console.log(this.tasks);
+        console.log(this.tasksFilteration);
+    },
+    computed() {
+        console.log(this.tasksFilteration);
     },
     methods: {
         getTasks: function () {
