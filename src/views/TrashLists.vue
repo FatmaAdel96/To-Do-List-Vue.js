@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <h1 class="font-weight-bold">Active Tasks</h1>
+          <h1 class="font-weight-bold">Recycle Bin Tasks</h1>
         </div>
       </div>
       <div class="row">
@@ -12,9 +12,9 @@
           id="accordionExample"
           v-for="(task, index) in tasks"
           :key="task.id"
-          :class="{ dNone: !task.status === 'active' }"
+          :class="{ dNone: !task.isDeleted }"
         >
-          <taskCard
+          <taskCardForShow
             @newData="getNewTasks"
             class="w-100"
             :name="task.name"
@@ -25,7 +25,7 @@
             :isDeleted="task.isDeleted"
             :index="index"
             :tasks="tasks"
-            v-if="task.status === 'active' && !task.isDeleted"
+            v-if="task.isDeleted"
           />
         </div>
       </div>
@@ -35,13 +35,13 @@
 
 <script>
 import { defineComponent } from "@vue/composition-api";
-import taskCard from "@/components/taskCard.vue";
+import taskCardForShow from "@/components/taskCardForShow.vue";
 
 export default defineComponent({
   setup() {},
   name: "ActiveLists",
   components: {
-    taskCard,
+    taskCardForShow,
   },
   data: function () {
     return {

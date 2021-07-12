@@ -1,28 +1,35 @@
 body {
-    background-color: #f7f7f7;
+  background-color: #f7f7f7;
 }
 
 .flex-flow-column {
-    flex-flow: column;
+  flex-flow: column;
 }
 .border-right-solid {
-    border-right: 1px solid;
+  border-right: 1px solid;
 }
 .justify-content-flex-end {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 .rounded {
-    border-radius: 2rem !important;
+  border-radius: 2rem !important;
 }
 .form-control,
 .btn {
-    border-radius: 2rem;
+  border-radius: 2rem;
 }
 .btn-outline-secondary:hover {
-    color: #000;
-    background-color: #ffbfa3;
-    border-color: #ffbfa3;
+  color: #000;
+  background-color: #ffbfa3;
+  border-color: #ffbfa3;
 }
+.text-decoration-underline {
+  text-decoration: underline;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
 $base-color-1: #38908f;
 $base-color-2: #b2ebe0;
 $base-color-3: #5e96ae;
